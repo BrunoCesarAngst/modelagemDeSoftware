@@ -1,0 +1,53 @@
+@startuml sisDeCobrança
+  package Sistema_de_Cobranças <<rectangle>> {
+
+    class Cliente {
+      - id: Int
+      # nome: String
+      # cobranças: List<Cobrança>
+      + fazerCompras(): Boolean
+      + fazerPagamento(): Boolean
+      + getCobranças(cliente: Cliente): List 
+      + excluirCobrança()
+    }
+
+    class Cobrança {
+      - id: Int
+      # cliente: Client
+      # quitada: Boolean
+      + incluirCobrança(cobrança: Cobrança)
+      + gerarBoleto(cliente: Cliente): String
+      + consultaBoleto(cliente: Cliente): Boolean
+    }
+
+    class Boleto {
+      - id: Int
+      # validade: Date
+      # valor: Float
+      # quitado: Boolean
+      + foiQuitado(): Boolean
+      + setQuitado(Boolean: foiQuitado)
+    }
+
+    interface PagarBoleto <<interface>> {
+      + fazerPagamento()
+    }
+
+    abstract class InformaçãoDoBoleto <<abstract>> {
+      + informaStatusDoBoleto()
+    }
+
+    interface FazerCobrança <<interface>> {
+      + consultaBoleto(): Boolean
+      + informaStatusDoBoleto()
+    }
+
+    Cliente "1" --o "0..*" Cobrança: < possue 
+    Cobrança "1" *-- "1" Boleto: < tem
+    Boleto <|-- InformaçãoDoBoleto
+    PagarBoleto <.. InformaçãoDoBoleto: depedência
+    Cliente ..|> PagarBoleto: realização
+    Cobrança ..|> FazerCobrança: realização
+    FazerCobrança ..> InformaçãoDoBoleto: depedência
+  }
+@enduml

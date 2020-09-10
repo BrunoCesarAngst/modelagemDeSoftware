@@ -1,0 +1,36 @@
+@startuml matriculaInformatica
+skinparam ClassAttributeIconSize 0
+
+package Modulo-matrícula/Informática <<Rectangle>> {
+
+    class Aluno {
+    - id: Int
+    - nome: String
+    - locaçao: List<Matrí>
+  }
+
+  Aluno "1" -l--* "0..*" Matrí: composição >
+
+  class Matrí {
+    - cliente: Client
+    - tempo: Int
+    - quadra: Quadra
+  }
+
+  Matrí "1" o--- "1..*" Quadra: < agregação
+
+  class Quadra {
+    - numero: Int
+    - aluguel: Matrí
+    - ginasio: Ginasio
+  }
+
+  Quadra *-l- Ginasio: < composição
+
+  class Ginasio {
+    - nome: String
+    - quadra: List<Quadra>
+  }
+
+}
+@enduml

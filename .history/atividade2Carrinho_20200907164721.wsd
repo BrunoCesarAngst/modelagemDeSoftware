@@ -1,0 +1,7 @@
+@startuml carrinho
+package Carrinho <<rectangle>> {
+  class Produtos
+  class Carrinhos
+
+}
+@enduml

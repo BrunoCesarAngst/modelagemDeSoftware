@@ -1,0 +1,15 @@
+@startuml sisDeCobrança
+  package Sistema_de_Cobranças <<rectangle>> {
+    class Cliente {
+      - id: Int
+      # nome: String
+    }
+    class Cobrança {
+      - id: Int
+      # cliente: 
+    }
+    Cliente "1" --o "0..*" Cobrança
+    class boleto {}
+    cobrança "1" *-- "1" boleto
+  }
+@enduml

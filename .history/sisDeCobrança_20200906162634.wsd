@@ -1,0 +1,9 @@
+@startuml sisDeCobrança
+  package Sistema_de_Cobrança <<rectangle>> {
+    class cliente {}
+    class cobrança {}
+    cliente "1" -- cobrança
+    class boleto {}
+    cobrança "1" -- "1" boleto
+  }
+@enduml

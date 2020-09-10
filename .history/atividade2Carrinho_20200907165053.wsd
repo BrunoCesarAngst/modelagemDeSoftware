@@ -1,0 +1,19 @@
+@startuml carrinho
+package Carrinho <<rectangle>> {
+
+  ' Classes
+  class Produtos {
+    + id: Int
+    + descProdutos: String
+    pre
+  }
+
+  class Carrinhos {
+
+  }
+
+  ' Relacionamentos
+  Produtos --o Carrinhos
+
+}
+@enduml

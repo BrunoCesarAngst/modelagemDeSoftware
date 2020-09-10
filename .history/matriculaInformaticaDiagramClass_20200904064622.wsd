@@ -1,0 +1,42 @@
+@startuml matriculaInformaticaDiagramClass
+skinparam ClassAttributeIconSize 0
+
+package Aluguel-de-Quadra <<Rectangle>> {
+
+  abstract class Pessoa {
+    # nome: String
+  }
+
+  Pessoa <|-- Clients
+
+  class Clients {
+    - id: Int
+    - nome: String
+    - locaçao: List<Aluguel>
+  }
+
+  Clients "1" -l--* "0..*" Aluguel: composição >
+
+  class Aluguel {
+    - cliente: Client
+    - tempo: Int
+    - quadra: Quadra
+  }
+
+  Aluguel "1" o--- "1..*" Quadra: < agregação
+
+  class Quadra {
+    - numero: Int
+    - aluguel: Aluguel
+    - ginasio: Ginasio
+  }
+
+  Quadra *-l- Ginasio: < composição
+
+  class Ginasio {
+    - nome: String
+    - quadra: List<Quadra>
+  }
+
+}
+@enduml

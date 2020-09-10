@@ -1,0 +1,3 @@
+@startuml sisDeCobrança
+  package Sistema de_Cobrança {}
+@enduml
